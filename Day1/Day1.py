@@ -63,7 +63,8 @@ def main():
     else:
         input = parse(sys.argv[1])
 
-    print(solve2(input))
+    print(f"Part 1: {solve1(input)}")
+    print(f"Part 2: {solve2(input)}")
 
 if __name__ == '__main__':
     main()
