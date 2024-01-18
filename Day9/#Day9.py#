@@ -1,0 +1,30 @@
+import sys
+
+def solve1(input):
+    for seq in input:
+        diff = 0
+        n = [int(x) for x in seq.split()]
+        while not all(x == 0 for x in n):
+            diffs = []
+            for i in range(1, len(n)):
+                diff = n[i] - n[i-1]
+                diffs.append(diff)
+            n = diffs
+                
+            print(diffs)
+
+
+def solve2(input):
+    pass
+
+def main():
+    if len(sys.argv) < 2:
+        print("Exiting. No filepath specified")
+        return
+    else:
+        with open(sys.argv[1], 'r') as file:
+            input = [x[:-1] for x in file.readlines()]
+            print(f"Part 1: {solve1(input)}\nPart 2: {solve2(input)}")
+
+if __name__ == '__main__':
+    main()

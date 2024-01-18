@@ -14,9 +14,6 @@ def solve1(cards):
             sum += 2**(len(s) - 1)
     return sum
 
-def playall(wins):
-    pass
-        
 def solve2(cards):
     numberOfWins = {}
     for card in cards:
@@ -37,7 +34,6 @@ def solve2(cards):
         for n in range(i+1, i+1+numberOfWins[l[i][0]]):
             l[n][1] += l[i][1]
 
-    print(l)
     return sum([n[1] for n in l])
 
 

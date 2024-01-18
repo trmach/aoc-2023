@@ -52,29 +52,51 @@ def solve1(input):
     
     return l
 
-        
-def solve2(input):
+# nice 15 python3 Day5.py input.txt 0 &
+# nice 15 python3 Day5.py input.txt 4 &
+# nice 15 python3 Day5.py input.txt 8 &
+# nice 15 python3 Day5.py input.txt 12 &
+# nice 15 python3 Day5.py input.txt 16 &
+def solve2(input, a):
     seeds = []
-    for n in range(0, len(input[0][0]), 2):
+    for n in range(a, a+4, 2):
         seeds.append((input[0][0][n], input[0][0][n+1]))
     l = float('inf')
     ranges = []
     for seed in seeds:
         for i in range(seed[0], seed[0] + seed[1]): # BRRRR
-            hit = False
             for r in ranges:
                 if i >= r[0] and i < r[0] + r[1]:
-                    break
+                    break # not good enough
                 else:
                     out = f(input[7], f(input[6], f(input[5], f(input[4], f(input[3], f(input[2], f(input[1], i)))))))
-                    print(out)
                     if out < l:
                         l = out
-                        print(out)
 
         ranges.append(seed)
             
     return l
+
+# ChatGPT (3.5):
+# def solve2(input): # this is the funniest shit i've ever seen. after this it told me to memoize f
+#     seeds = [(input[0][0][n], input[0][0][n+1]) for n in range(0, len(input[0][0]), 2)]
+#     min_value = float('inf')
+#     precomputed_values = [f(input[7], f(input[6], f(input[5], f(input[4], f(input[3], f(input[2], f(input[1], i))))))) for i in range(max(seeds, key=lambda x: x[0])[0] + max(seeds, key=lambda x: x[1])[1])]
+#     ranges = set()
+#     print("done")
+#     for seed in seeds:
+#         for i in range(seed[0], seed[0] + seed[1]):
+#             if i in ranges:
+#                 continue
+
+#             current_value = precomputed_values[i]
+
+#             if current_value < min_value:
+#                 min_value = current_value
+
+#             ranges.add(i)
+
+#     return min_value
 
 def main():
     if len(sys.argv) < 2:
@@ -86,7 +108,7 @@ def main():
             input = [x.split(':')[1].strip().split('\n') for x in file.read().split('\n\n')]
             input = [[[int(i) for i in x.split()] for x in input[n]] for n in range(8)] # <3
             print(f"Part 1: {solve1(input)}")
-            print(f"Part 2: {solve2(input)}")
+            print(f"Part 2: {solve2(input, int(sys.argv[2]))}")
 
 if __name__ == '__main__':
     main()
