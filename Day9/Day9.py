@@ -16,8 +16,7 @@ def solve1(input):
             a.append(diffs)  
 
         a.reverse()
-        for l in enumerate(a):
-            i, lst = l[0], l[1]
+        for i, lst in enumerate(a):
             if i == 0:
                 lst.append(0)
                 continue
@@ -45,9 +44,7 @@ def solve2(input):
         a.reverse()
         for l in a:
             l.reverse()
-        for l in enumerate(a):
-            print(l)
-            i, lst = l[0], l[1]
+        for i, lst in enumerate(a):
             if i == 0:
                 lst.append(0)
                 continue
